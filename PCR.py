@@ -83,17 +83,23 @@ for i in range(len(tipo_cancer)):
 		benignos_index.append(i)
 
 malignos_y=[]
-malignos_x=[]
-benignos_x=[]
 benignos_y=[]
 for i in range(len(malignos_index)):
 	malignos_y.append(data_necesario[malignos_index[i]])
-	malignos_x.append(index_tipo[malignos_index[i]])
-	benignos_y.append(data_necesario[benignos_index])
-	benignos_x.append(index_tipo[benignos_index])
+	benignos_y.append(data_necesario[benignos_index[i]])
 
 
-print malignos_y
+
+mal = np.matmul(malignos_y,eigenvectors)
+bien = np.matmul(benignos_y,eigenvectors)
+
+plt.figure()
+plt.scatter(mal[:,0],mal[:,1], label="Malignos")
+plt.scatter(bien[:,0],bien[:,1], label="Benignos")
+plt.legend(loc=0)
+plt.xlabel("PC1")
+plt.ylabel("PC2")
+plt.savefig("MartinezSebastian_PCA.pdf")
 
 
 
