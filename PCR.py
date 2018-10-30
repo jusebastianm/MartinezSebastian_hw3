@@ -14,6 +14,7 @@ import matplotlib.pylab as plt
 #Almaceno los datos WDBC
 
 data_original = np.genfromtxt("WDBC.txt", delimiter= ",")
+datas=np.genfromtxt("WDBC.txt", delimiter= ",", dtype='U16')
 data_necesario= data_original[:,2:,]
 
 #_______________________________________________________________________________________________________________________________________
@@ -21,7 +22,7 @@ data_necesario= data_original[:,2:,]
 
 #Implemento el calculo propio de la matriz de covarianza usando la siguiente formula
 
-#a = A - 11'A ( 1 / n )#
+
 
 def matrix_covariance(datos):
     variables = np.shape(datos)[1]
@@ -55,7 +56,6 @@ for i in range(len(eigenvalues)):
 
 #Los parametros mas importantes
 
-
 print "___________________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________________"
@@ -69,6 +69,32 @@ print "Los parametros mas importantes en base a mis autovectores son"
 print "___________________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________________"
+
+
+
+tipo_cancer=datas[:,1]
+index_tipo=data_original[:,0]
+malignos_index=[]
+benignos_index=[]
+for i in range(len(tipo_cancer)):
+	if tipo_cancer[i]==u'M':
+		malignos_index.append(i)
+	else:
+		benignos_index.append(i)
+
+malignos_y=[]
+malignos_x=[]
+benignos_x=[]
+benignos_y=[]
+for i in range(len(malignos_index)):
+	malignos_y.append(data_necesario[malignos_index[i]])
+	malignos_x.append(index_tipo[malignos_index[i]])
+	benignos_y.append(data_necesario[benignos_index])
+	benignos_x.append(index_tipo[benignos_index])
+
+
+print malignos_y
+
 
 
 

@@ -64,14 +64,14 @@ inv_filtrada=fftpack.ifft2(FT_shift)
 
 
 plt.figure()
-plt.title("Imagen filtrada")
-plt.imshow(log_AFS-np.log(abs(filtrada)))
+plt.title("Transformada de Fourier filtrada")
+plt.imshow(np.log(abs(filtrada)))
 plt.savefig("MartinezSebastian_FT2D_filtrada.pdf")
 
 
 plt.figure()
 plt.title("Imagen filtrada")
-plt.imshow(abs(inv_filtrada))
+plt.imshow(abs(inv_filtrada), cmap='gray')
 plt.savefig("MartinezSebastian_Imagen_filtrada.pdf")
 
 
@@ -79,11 +79,5 @@ plt.savefig("MartinezSebastian_Imagen_filtrada.pdf")
 
 #_______________________________________________________________________________________________________________________________________
 #_______________________________________________________________________________________________________________________________________
-
-
-
-
-
-
 
 
