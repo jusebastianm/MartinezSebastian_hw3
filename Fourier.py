@@ -7,7 +7,7 @@
 
 import numpy as np
 import matplotlib.pylab as plt
-from scipy.fftpack import fft, fftfreq
+from scipy.fftpack import fft, fftfreq, ifft
 import math
 from scipy import interpolate 
 e=math.e
@@ -91,13 +91,13 @@ def filtro_bajos(FT, filtro):
 	return data_filtro
 
 filtros = filtro_bajos(frecuencia,1000)
-
+xx=np.linspace(min(signal_x),max(signal_x),len(filtros))
+inversa = ifft(filtros)
 plt.figure()
 plt.title("Transformada discreta de Fourier con Filtrado")
-plt.plot(filtros, abs(DFT))
+plt.plot(inversa,DFT)
 plt.xlabel("Frecuencia")
 plt.ylabel("DFT")
-plt.xlim(-1000,1000)
 plt.savefig("MartinezSebastian_filtrada.pdf")
 
 
@@ -152,6 +152,7 @@ DFT_cubica=np.linspace(0,0,n_puntos)
 for i in range(N):
 	for j in range(len(DFT_cubica)):
 		DFT_cubica[i] = DFT_cubica[i] + (y_cubica[j]*(e**((-1j)*2*pi*j*i/n_puntos)))
+
 plt.figure()
 f, (ax1,ax2,ax3)= plt.subplots(3,sharex=True,sharey=True)
 plt.xlabel("Frecuencia")
