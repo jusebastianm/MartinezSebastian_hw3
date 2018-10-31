@@ -113,7 +113,7 @@ print "_________________________________________________________________________
 print "___________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________"
 
-print "No puede hacer la transformada de Fourier de los datos porque"
+print "No puede hacer la transformada de Fourier de los datos porque mi delta de tiempo no es constante para todo el arreglo."
 
 #_______________________________________________________________________________________________________________________________________
 #_______________________________________________________________________________________________________________________________________
@@ -168,6 +168,7 @@ ax3.plot(frecuencia_cubica,abs(DFT_cubica)/n_puntos, color='c', label="Signal cu
 ax1.legend(loc=0)
 ax2.legend(loc=0)
 ax3.legend(loc=0)
+plt.xlim(-1000,1000)
 plt.savefig("MartinezSebastian_TF_interpola.pdf")
 #_______________________________________________________________________________________________________________________________________
 #_______________________________________________________________________________________________________________________________________
@@ -177,7 +178,7 @@ print "_________________________________________________________________________
 print "___________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________"
 
-print "las diferencias encontradas entre la transformada de Fourier de la signal original y las de las interpolaciones son que las frecuencias positivamente mas grandes se alcanzan a distinguir con las interpolaciones, mientras que con la orginal no"
+print "las diferencias encontradas entre la transformada de Fourier de la signal original y las de las interpolaciones son hay transformadas discretas de Fourier que se convierten en cero"
 
 
 #_______________________________________________________________________________________________________________________________________
@@ -203,13 +204,13 @@ plt.xlim(-1000,1000)
 plt.xlabel("Frecuencia")
 plt.ylabel("Inversa DFT")
 ax1.set_title("Transformadas discretas de Fourier con filtros de 500 HZ")
-ax1.plot(signal_x, ifft(filtros_original_2), color='r',linestyle='-.', label="Signal DFT")
+ax1.plot(signal_x, ifft(filtros_original_2), color='r',marker="*", label="Signal DFT")
 ax1.plot(x_cuadratica, ifft(filtros_cuadra_2), color='darkblue', label="Signal cuadratic DFT")
 ax1.plot(x_cubica, ifft(filtros_cubica_2), color='c',linestyle='--', label="Signal cubic DFT")
 ax1.legend(loc=0)
 plt.xlim(min(signal_x),max(signal_x))
 ax2.set_title("Transformadas discretas de Fourier con filtros de 1000 HZ")
-ax2.plot(signal_x, inv, color='r', label="Signal DFT")
+ax2.plot(signal_x, inv, color='r',marker="*",label="Signal DFT")
 ax2.plot(x_cuadratica, ifft(filtros_cuadra), color='darkblue', label="Signal cuadratic DFT")
 ax2.plot(x_cubica, ifft(filtros_cubica), color='c', linestyle='--',label="Signal cubic DFT")
 ax2.legend(loc=0)
