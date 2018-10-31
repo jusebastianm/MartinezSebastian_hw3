@@ -84,25 +84,24 @@ print "_________________________________________________________________________
 
 #Filtro de frecuencias
 
-
-
-data_filtro=[]
-
 def filtro_bajos(FT, filtro):
+	frec_filtrada=[]
 	for i in range(len(FT)):
 		if FT[i] < filtro:
-			data_filtro.append(FT[i])
-		else:
+			frec_filtrada.append(FT[i])
+		if FT[i] >= filtro:
 			FT[i] = 0
-			data_filtro.append(FT[i])
-	return data_filtro
+			frec_filtrada.append(FT[i])
+	return frec_filtrada
 
-filtros = filtro_bajos(frecuencia,1000)
-xx=np.linspace(min(signal_x),max(signal_x),len(filtros))
-inversa = ifft(filtros)
+
+prueba= filtro_bajos(frecuencia,1000)
+inv= ifft(prueba)
+print prueba
+
 plt.figure()
 plt.title("Transformada discreta de Fourier con Filtrado")
-plt.plot(DFT,inversa)
+plt.plot(frecuencia,inv)
 plt.xlabel("Frecuencia")
 plt.ylabel("DFT")
 plt.savefig("MartinezSebastian_filtrada.pdf")
@@ -267,7 +266,7 @@ ax1.plot(filtros_cubica_2, abs(DFT_cubica)/n_puntos, color='c',linestyle='--', l
 ax1.legend(loc=0)
 
 ax2.set_title("Transformadas discretas de Fourier con filtros de 1000 HZ")
-ax2.plot(filtros, abs(DFT), color='r', label="Signal DFT")
+#ax2.plot(filtros, abs(DFT), color='r', label="Signal DFT")
 ax2.plot(filtros_cuadra, abs(DFT_cuadra)/n_puntos, color='darkblue', label="Signal cuadratic DFT")
 ax2.plot(filtros_cubica, abs(DFT_cubica)/n_puntos, color='c', linestyle='--',label="Signal cubic DFT")
 ax2.legend(loc=0)
