@@ -59,18 +59,12 @@ for i in range(len(eigenvalues)):
 print "___________________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________________"
-print "Los parametros mas importantes en base a mis autovectores son"
+print "Los parametros mas importantes en base a mis autovectores son los que tienen direccion positiva ya que se ve una tendencia a crecer en el componente prinicpal 1"
 
 #_______________________________________________________________________________________________________________________________________
 #_______________________________________________________________________________________________________________________________________
 
 #Separo mis componentes en Maligno y benigno
-
-print "___________________________________________________________________________________________________________________________"
-print "___________________________________________________________________________________________________________________________"
-print "___________________________________________________________________________________________________________________________"
-
-
 
 tipo_cancer=datas[:,1]
 index_tipo=data_original[:,0]
@@ -94,14 +88,23 @@ mal = np.matmul(malignos_y,eigenvectors)
 bien = np.matmul(benignos_y,eigenvectors)
 
 plt.figure()
-plt.scatter(mal[:,0],mal[:,1], label="Malignos")
-plt.scatter(bien[:,0],bien[:,1], label="Benignos")
+plt.scatter(mal[:,0],mal[:,1], label="Malignos", color='r')
+plt.scatter(bien[:,0],bien[:,1], label="Benignos", color='g', marker='*')
+plt.title("Analisis de componentes principales para un tipo de Cancer")
 plt.legend(loc=0)
 plt.xlabel("PC1")
 plt.ylabel("PC2")
 plt.savefig("MartinezSebastian_PCA.pdf")
 
+#_______________________________________________________________________________________________________________________________________
+#_______________________________________________________________________________________________________________________________________
 
+#Los parametros mas importantes
+
+print "___________________________________________________________________________________________________________________________"
+print "___________________________________________________________________________________________________________________________"
+print "___________________________________________________________________________________________________________________________"
+print "El analisis de componentes principales (PCA) es util en este caso porque permite mostrar los datos variables de manera que no esten correlacionados entre si y ademas disminuye la dimension y redundancia del mismo conjunto de datos. De esta forma, es posible diagnosticar a un paciente tomando en cuenta el grafico realizado en el punto anterior ya que en el, los pacientes con cancer benigno nunca se veran correlacionados con de cancer maligno. "
 
 
 
