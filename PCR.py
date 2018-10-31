@@ -21,8 +21,16 @@ data_necesario= data_original[:,2:,]
 #_______________________________________________________________________________________________________________________________________
 
 #Implemento el calculo propio de la matriz de covarianza usando la siguiente formula
+print np.shape(data_necesario)
+def normalizacion(datas):
+	for j in range(np.shape(datas)[1]):
+		promedio=np.mean(datas[:,j])
+		desvest=np.std(datas[:,j])
+		for i in range(np.shape(datas)[0]):
+			datas[i][j]=(datas[i][j]-promedio)/desvest
+	return datas
 
-
+normales=normalizacion(data_necesario)
 
 def matrix_covariance(datos):
     variables = np.shape(datos)[1]
@@ -37,7 +45,7 @@ def matrix_covariance(datos):
 
 
 
-covariance= matrix_covariance(data_necesario)
+covariance= matrix_covariance(normales)
 
 print "___________________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________________"
@@ -86,8 +94,8 @@ for i in range(len(tipo_cancer)):
 malignos_y=[]
 benignos_y=[]
 for i in range(len(malignos_index)):
-	malignos_y.append(data_necesario[malignos_index[i]])
-	benignos_y.append(data_necesario[benignos_index[i]])
+	malignos_y.append(normales[malignos_index[i]])
+	benignos_y.append(normales[benignos_index[i]])
 
 
 
