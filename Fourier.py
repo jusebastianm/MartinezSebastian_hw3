@@ -34,7 +34,7 @@ signal_y= signal[:,1]
 plt.figure()
 plt.title("Signal")
 plt.xlabel("Tiempo (s)")
-plt.ylabel("Frecuencia ")
+plt.ylabel("y (t) ")
 plt.plot(signal_x,signal_y)
 plt.savefig("MartinezSebastian_signal.pdf")
 
@@ -113,7 +113,12 @@ print "_________________________________________________________________________
 print "___________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________"
 
-print "No puede hacer la transformada de Fourier de los datos porque mi delta de tiempo no es constante para todo el arreglo."
+print "No puede hacer la transformada de Fourier de los datos porque mi delta de tiempo (espaciado en x) no es constante para todo el arreglo haciendo que se generen huecos en la transformada."
+
+
+print "___________________________________________________________________________________________________________________"
+print "___________________________________________________________________________________________________________________"
+print "___________________________________________________________________________________________________________________"
 
 #_______________________________________________________________________________________________________________________________________
 #_______________________________________________________________________________________________________________________________________
@@ -142,7 +147,7 @@ y_cuadratica=f_cuadratica[1]
 dt_cuadra=x_cuadratica[1]-x_cuadratica[0]
 frecuencia_cuadra= fftfreq(n_puntos,dt_cuadra)
 DFT_cuadra=np.linspace(0,0,n_puntos)
-for i in range(N):
+for i in range(n_puntos):
 	for j in range(len(DFT_cuadra)):
 		DFT_cuadra[i] = DFT_cuadra[i] + (y_cuadratica[j]*(e**((-1j)*2*pi*j*i/n_puntos)))
 
@@ -153,17 +158,18 @@ y_cubica= f_cubica[1]
 dt_cubica=x_cubica[1]-x_cubica[0]
 frecuencia_cubica= fftfreq(n_puntos,dt_cubica)
 DFT_cubica=np.linspace(0,0,n_puntos)
-for i in range(N):
+for i in range(n_puntos):
 	for j in range(len(DFT_cubica)):
 		DFT_cubica[i] = DFT_cubica[i] + (y_cubica[j]*(e**((-1j)*2*pi*j*i/n_puntos)))
 
 plt.figure()
 f, (ax1,ax2,ax3)= plt.subplots(3,sharex=True,sharey=True)
 plt.xlabel("Frecuencia")
-plt.ylabel("DFT")
+
 ax1.set_title("Transformadas discretas de Fourier")
 ax1.plot(frecuencia, abs(DFT)/N, color='r', label="Signal DFT")
 ax2.plot(frecuencia_cuadra,abs(DFT_cuadra)/n_puntos, color='darkblue',label="Signal cuadratic DFT")
+plt.ylabel("DFT")
 ax3.plot(frecuencia_cubica,abs(DFT_cubica)/n_puntos, color='c', label="Signal cubic DFT")
 ax1.legend(loc=0)
 ax2.legend(loc=0)
@@ -178,7 +184,12 @@ print "_________________________________________________________________________
 print "___________________________________________________________________________________________________________________"
 print "___________________________________________________________________________________________________________________"
 
-print "las diferencias encontradas entre la transformada de Fourier de la signal original y las de las interpolaciones son hay transformadas discretas de Fourier que se convierten en cero"
+print "las diferencias encontradas entre la transformada de Fourier de la signal original y las de las interpolaciones son que la original tiene algunos picos mas notorios o sobresalientes respecto a las interpolaciones. Esto se ve justificado en mejora del espaciado en el arreglo que refleja cada una de las interpolaciones."
+
+
+print "___________________________________________________________________________________________________________________"
+print "___________________________________________________________________________________________________________________"
+print "___________________________________________________________________________________________________________________"
 
 
 #_______________________________________________________________________________________________________________________________________

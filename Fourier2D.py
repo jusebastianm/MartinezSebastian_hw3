@@ -27,7 +27,8 @@ log_AFS= np.log(abs_FT_shift)
 
 plt.figure()
 plt.title("Transformada de Fourier")
-plt.imshow(log_AFS)
+plt.imshow(log_AFS, cmap='gray')
+plt.colorbar()
 plt.savefig("MartinezSebastian_FT2D.pdf")
 
 #_______________________________________________________________________________________________________________________________________
@@ -43,8 +44,6 @@ def maximo(FT_shift):
 	return temp
 
 pru=maximo(FT_shift)
-print pru
-
 
 def filtro(maximo,minimo,FT_shift):
 	for i in range (np.shape(FT_shift)[0]):		
@@ -65,7 +64,8 @@ inv_filtrada=fftpack.ifft2(FT_shift)
 
 plt.figure()
 plt.title("Transformada de Fourier filtrada")
-plt.imshow(np.log(abs(filtrada)))
+plt.imshow(np.log(abs(filtrada)), cmap='gray')
+plt.colorbar()
 plt.savefig("MartinezSebastian_FT2D_filtrada.pdf")
 
 
