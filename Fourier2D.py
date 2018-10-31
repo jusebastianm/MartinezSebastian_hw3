@@ -8,7 +8,7 @@
 import numpy as np
 import matplotlib.pylab as plt
 from scipy import fftpack
-
+from matplotlib.colors import LogNorm
 #_______________________________________________________________________________________________________________________________________
 #_______________________________________________________________________________________________________________________________________
 
@@ -64,7 +64,7 @@ inv_filtrada=fftpack.ifft2(FT_shift)
 
 plt.figure()
 plt.title("Transformada de Fourier filtrada")
-plt.imshow(np.log(abs(filtrada)), cmap='gray')
+plt.imshow(np.log(abs(filtrada)), norm= LogNorm(vmin=5), cmap='gray')
 plt.colorbar()
 plt.savefig("MartinezSebastian_FT2D_filtrada.pdf")
 
